@@ -1,0 +1,52 @@
+.cover {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+  
+.title {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+}
+
+.title h1{
+    font-size: 50px;
+}
+
+.autorInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.authorCover {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.postInfo p {
+    font-weight: 500;
+    font-size: 10px;
+    text-align: start;
+}
+
+.content {
+    width: 80%;
+    margin: auto;
+}

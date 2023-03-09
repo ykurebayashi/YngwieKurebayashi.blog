@@ -100,7 +100,7 @@ export default function Home({ posts }: AllPosts) {
                   author={post.author.name}
                   authorPic={post.author.avatar.url}
                   category={post.category}
-                  datePublished={"22/22/22"}
+                  datePublished={post.datePublished}
                   coverPhoto={post.coverPhoto.url}
                   slug={post.slug}
                   key={index}
