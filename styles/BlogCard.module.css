@@ -1,0 +1,52 @@
+.card {
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 15px 20px 40px rgba(216, 211, 211, 0.4);
+    width: 500px;
+    height: 250px;
+    display: flex;
+    padding: 20px;
+    margin: 5rem auto;
+}
+
+.card h1 {
+    font-size: 1.5rem;
+}
+
+.card img:hover {
+    opacity: 0.8;
+  }
+  
+.cover{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.postInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: flex-start;
+}
+
+.postInfo img {
+    width: 100px;
+}
+
+.authorInfo {
+    display: flex;
+}
+
+.postMetaData {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.postMetaData img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
