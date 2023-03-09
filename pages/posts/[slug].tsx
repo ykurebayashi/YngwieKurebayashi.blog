@@ -1,11 +1,49 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import Navbar from "@/components/Navbar/Navbar";
-import { GraphQLClient, gql } from "graphql-request";
-import styles from "../../styles/Slug.module.css";
+import Navbar from '@/components/Navbar/Navbar';
+import { GraphQLClient, gql } from 'graphql-request';
+import styles from '../../styles/Slug.module.css';
+
+interface Post {
+  title: string;
+  slug: string;
+  coverPhoto: {
+    url: string;
+  };
+  content: {
+    html: string;
+  };
+  datePublished: string;
+  excerpt: string;
+  category: string;
+  author: {
+    name: string;
+    avatar: {
+      id: string;
+      url: string;
+    };
+  };
+  id: string;
+}
+
+interface GetStaticPropsArgs {
+  params: {
+    slug: string;
+  };
+}
+
+interface GraphCMSResponse {
+  post: Post;
+}
+
+interface SlugListResponse {
+  posts: {
+    slug: string;
+  }[];
+}
 
 const graphcms = new GraphQLClient(
-  "https://api-sa-east-1.hygraph.com/v2/clf03xq6b1pn101ug1qpf36pj/master"
+  'https://api-sa-east-1.hygraph.com/v2/clf03xq6b1pn101ug1qpf36pj/master'
 );
 
 const QUERY = gql`
@@ -43,16 +81,16 @@ const SLUGLIST = gql`
 `;
 
 export async function getStaticPaths() {
-  const { posts } = await graphcms.request(SLUGLIST);
+  const { posts } = await graphcms.request<SlugListResponse>(SLUGLIST);
   return {
     paths: posts.map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: GetStaticPropsArgs) {
   const slug = params.slug;
-  const data = await graphcms.request(QUERY, { slug });
+  const data = await graphcms.request<GraphCMSResponse>(QUERY, { slug });
   const post = data.post;
   return {
     props: {
@@ -62,7 +100,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function BlogPost({ post }) {
+export default function BlogPost({ post }: { post: Post }) {
   return (
     <div className={styles.mainBody}>
       <Navbar />
