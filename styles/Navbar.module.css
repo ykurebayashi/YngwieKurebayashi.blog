@@ -1,0 +1,18 @@
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.h1{
+    text-align: center;
+}
+
+.ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ul li {
+    list-style: none;
+}

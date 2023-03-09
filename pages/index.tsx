@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { GraphQLClient, gql } from "graphql-request";
 import BlogCard from "@/components/BlogCard/BlogCard";
 import { GetStaticProps } from "next";
+import Navbar from "@/components/Navbar/Navbar";
 
 const graphcms = new GraphQLClient(
   "https://api-sa-east-1.hygraph.com/v2/clf03xq6b1pn101ug1qpf36pj/master"
@@ -90,20 +91,23 @@ export default function Home({ posts }: AllPosts) {
       </Head>
       <main className={styles.main}>
         <>
-          {arrangedPosts.map((post, index) => {
-            return (
-              <BlogCard
-                title={post.title}
-                author={post.author.name}
-                authorPic={post.author.avatar.url}
-                category={post.category}
-                datePublished={"22/22/22"}
-                coverPhoto={post.coverPhoto.url}
-                slug={post.slug}
-                key={index}
-              />
-            );
-          })}
+          <Navbar />
+          <div className={styles.posts}>
+            {arrangedPosts.map((post, index) => {
+              return (
+                <BlogCard
+                  title={post.title}
+                  author={post.author.name}
+                  authorPic={post.author.avatar.url}
+                  category={post.category}
+                  datePublished={"22/22/22"}
+                  coverPhoto={post.coverPhoto.url}
+                  slug={post.slug}
+                  key={index}
+                />
+              );
+            })}
+          </div>
         </>
       </main>
     </>
