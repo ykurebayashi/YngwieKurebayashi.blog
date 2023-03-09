@@ -43,16 +43,16 @@ const SLUGLIST = gql`
 `;
 
 export async function getStaticPaths() {
-  const { posts } = await graphcms.request(SLUGLIST);
+  const { posts } = await graphcms.request<any>(SLUGLIST);
   return {
-    paths: posts.map((post) => ({ params: { slug: post.slug } })),
+    paths: posts.map((post: any) => ({ params: { slug: post.slug } })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const slug = params.slug;
-  const data = await graphcms.request(QUERY, { slug });
+  const data = await graphcms.request<Post>(QUERY, { slug });
   const post = data.post;
   return {
     props: {
@@ -62,7 +62,41 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function BlogPost({ post }) {
+type Author = {
+  name: string;
+  avatar: {
+    id: string;
+    url: string;
+  };
+};
+
+type CoverPhoto = {
+  url: string;
+};
+
+type Content = {
+  html: string;
+};
+
+type Post = {
+  post: {
+    author: Author;
+    category: string;
+    content: Content;
+    coverPhoto: CoverPhoto;
+    datePublished: string;
+    excerpt: string;
+    id: string;
+    slug: string;
+    title: string;
+  };
+};
+
+type AllPosts = {
+  posts: Post[];
+};
+
+export default function BlogPost({ post }: Post) {
   return (
     <div className={styles.mainBody}>
       <Navbar />
