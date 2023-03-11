@@ -3,7 +3,33 @@
     height: 30vh;
     object-fit: cover;
 }
-  
+
+.blog p{
+    margin-bottom: 0.8rem;
+    padding: 5px;
+}
+
+.blog h3{
+    font-size: 30px;
+    margin-bottom: 0.8rem;
+    margin-top: 1rem;
+}
+
+.blog pre {
+    padding: 20px;
+    margin: 0 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    background-color: lightgrey;
+}
+
+.blog ul {
+    margin-left: 30px;
+}
+.blog ul li {
+    padding: 5px 0;
+}
+
 .title {
     width: 80%;
     margin: auto;
@@ -49,4 +75,9 @@
 .content {
     width: 80%;
     margin: auto;
+}
+
+.postInfo p {
+    margin: 0;
+    padding: 0;
 }
