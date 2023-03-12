@@ -73,14 +73,13 @@ export const getStaticProps: GetStaticProps<AllPosts> = async () => {
   const { posts } = await graphcms.request<{ posts: Post[] }>(ALL_POSTS_QUERY);
   return {
     props: {
-      posts,
+      posts: posts.reverse(),
     },
     revalidate: 10,
   };
 };
 
 export default function Home({ posts }: AllPosts) {
-  const arrangedPosts = posts.reverse();
   return (
     <>
       <Head>
@@ -93,7 +92,7 @@ export default function Home({ posts }: AllPosts) {
         <>
           <Navbar />
           <div className={styles.posts}>
-            {arrangedPosts.map((post, index) => {
+            {posts.map((post, index) => {
               return (
                 <BlogCard
                   title={post.title}
@@ -103,6 +102,7 @@ export default function Home({ posts }: AllPosts) {
                   datePublished={post.datePublished}
                   coverPhoto={post.coverPhoto.url}
                   slug={post.slug}
+                  excerpt={post.excerpt}
                   key={index}
                 />
               );

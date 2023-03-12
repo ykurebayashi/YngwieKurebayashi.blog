@@ -11,6 +11,7 @@ type Props = {
   datePublished: string;
   slug: string;
   category: string;
+  excerpt: string;
 };
 
 export default function BlogCard({
@@ -21,6 +22,7 @@ export default function BlogCard({
   datePublished,
   slug,
   category,
+  excerpt,
 }: Props): ReactElement {
   return (
     <div className={styles.card}>
@@ -37,12 +39,7 @@ export default function BlogCard({
           <p>{datePublished}</p>
         </div>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          voluptatum esse quis. Tempora impedit nesciunt, ipsa vel illum magni
-          sapiente ducimus! Ex aut error enim repudiandae debitis molestiae
-          maiores sint?
-        </p>
+        <p>{excerpt}</p>
 
         <Link href={"/posts/" + slug}>
           <p>Read More</p>
