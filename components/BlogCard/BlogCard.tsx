@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import styles from "../../styles/BlogCard.module.css";
-import { ReactElement } from "react";
+import Link from 'next/link';
+import styles from '../../styles/BlogCard.module.css';
+import { ReactElement } from 'react';
 
 type Props = {
   title: string;
@@ -25,26 +25,25 @@ export default function BlogCard({
   excerpt,
 }: Props): ReactElement {
   return (
-    <div className={styles.card}>
-      <img src={coverPhoto} alt={slug} className={styles.cover} />
-
-      <div className={styles.postInfo}>
-        <h1>{title}</h1>
-
-        <div className={styles.postMetaData}>
-          <div className={styles.authorInfo}>
-            <img src={authorPic} alt={author} />
-            <p>{author}</p>
-          </div>
-          <p>{datePublished}</p>
+    <Link className={styles.cardLink} href={'/posts/' + slug}>
+      <div className={styles.card}>
+        <div className={styles.mainTitle}>
+          <img src={coverPhoto} alt={slug} className={styles.cover} />
+          <h1 className={styles.title}>{title}</h1>
         </div>
 
-        <p>{excerpt}</p>
+        <div className={styles.postInfo}>
+          <div className={styles.postMetaData}>
+            <div className={styles.authorInfo}>
+              <img src={authorPic} alt={author} />
+              <p>{author}</p>
+            </div>
+            <p>{datePublished}</p>
+          </div>
 
-        <Link href={"/posts/" + slug}>
-          <p>Read More</p>
-        </Link>
+          <p>{excerpt}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
