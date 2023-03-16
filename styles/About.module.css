@@ -1,0 +1,61 @@
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 200px 15%;
+  
+}
+
+.leftMainContent {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+}
+
+.mainPresentation {
+  font-size: 3.5rem;
+}
+
+.mainDescription {
+  font-size: 1.5rem;
+}
+
+.handEmoji:hover {
+  animation-name: wave-animation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  display: inline-block;
+}
+
+.mainStack {
+  margin-top: 40px;
+}
+
+.mainStack, .ulStack {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ulStack li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+.techImage {
+  width: 40px;
+}
+
+.authorImage {
+  height: 400px;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate( 0.0deg) }
+ 10% { transform: rotate(14.0deg) }
+ 20% { transform: rotate(-8.0deg) }
+ 30% { transform: rotate(14.0deg) }
+ 40% { transform: rotate(-4.0deg) }
+ 50% { transform: rotate(10.0deg) }
+ 60% { transform: rotate( 0.0deg) }
+100% { transform: rotate( 0.0deg) }
+}

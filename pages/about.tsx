@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Head from 'next/head';
+import styles from '../styles/About.module.css';
 
 export default function About() {
   return (
@@ -10,8 +11,66 @@ export default function About() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Navbar />
-      <p>this is about page</p>
+      <main>
+        <Navbar />
+        <div className={styles.mainContent}>
+          <div className={styles.leftMainContent}>
+            <h2 className={styles.mainPresentation}>
+              Front End Developer <span className={styles.handEmoji}>👋</span>
+            </h2>
+            <p className={styles.mainDescription}>
+              I&apos;m Yngwie, a Front End Developer based in Brazil!
+            </p>
+            <div className={styles.mainStack}>
+              <p>My current stack is:</p>
+              <ul className={styles.ulStack}>
+                <li>
+                  <img
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png'
+                    alt='Reactjs'
+                    className={styles.techImage}
+                  />
+                </li>
+                <li>
+                  <img
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/1200px-Nextjs-logo.svg.png'
+                    alt='NextJs'
+                    className={styles.techImage}
+                  />
+                </li>
+                <li>
+                  <img
+                    src='https://logospng.org/download/javascript/logo-javascript-1024.png'
+                    alt='Javascript'
+                    className={styles.techImage}
+                  />
+                </li>
+                <li>
+                  <img
+                    src='https://logospng.org/download/typescript/typescript-2048.png'
+                    alt='Typescript'
+                    className={styles.techImage}
+                  />
+                </li>
+                <li>
+                  <img
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/800px-PHP-logo.svg.png'
+                    alt='PHP'
+                    className={styles.techImage}
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className={styles.righttMainContent}>
+            <img
+              className={styles.authorImage}
+              src='https://live.staticflickr.com/65535/49942355807_63b0af75c6_c.jpg'
+              alt='author'
+            />
+          </div>
+        </div>
+      </main>
     </>
   );
 }
