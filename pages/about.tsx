@@ -1,8 +1,79 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Head from 'next/head';
 import styles from '../styles/About.module.css';
+import js_logo from '../utils/img/js_logo.png';
+import ts_logo from '../utils/img/ts_logo.png';
+import next_logo from '../utils/img/next_logo.png';
+import react_logo from '../utils/img/react_logo.png';
+import PHP_logo from '../utils/img/PHP_logo.png';
+import { useEffect, useState } from 'react';
+
+type JobContent = {
+  [key: string]: JSX.Element;
+};
 
 export default function About() {
+  const [selectedJob, setSelectedJob] = useState<number>(0);
+
+  const jobContent: JobContent = {
+    0: (
+      <div className={styles.ppfyJob}>
+        <h3>
+          Front End Developer @<span>Pipefy</span>
+        </h3>
+        <p className={styles.workDate}>From 03/22 to 03/23</p>
+        <ul>
+          <li className={styles.functionJob}>
+            • Collaborated closely with Designers to ensure consistency and
+            reliability across all product and platform components. Worked
+            diligently to maintain a high level of quality and attention to
+            detail in all development work.
+          </li>
+          <li className={styles.functionJob}>
+            • Acted as both FrontEnd and WordPress developer, where I actively
+            participated in all stages of the software development cycle, from
+            design and planning to implementation and testing.
+          </li>
+          <li className={styles.functionJob}>
+            • As a Front End developer, I was responsible for developing
+            solutions using technologies such as HTML, CSS, JavaScript,
+            TypeScript, React and GraphQL.
+          </li>
+          <li className={styles.functionJob}>
+            • As a WordPress developer, I was in constant contact with
+            technologies such as HTML, CSS, Javascript, PHP, WordPress and
+            Sentry (for error monitoring).
+          </li>
+        </ul>
+      </div>
+    ),
+    1: (
+      <div className={styles.freeJob}>
+        <h3>
+          Front End Developer @<span>Freelancing</span>
+        </h3>
+        <p className={styles.workDate}>From 06/21 to today</p>
+        <ul>
+          <li className={styles.functionJob}>
+            • Designed and implemented responsive and user-friendly web
+            applications using React, Typescript, HTML, CSS, and JavaScript.
+          </li>
+          <li className={styles.functionJob}>
+            • Utilized Node.js to develop back-end functionality and integrate
+            with various APIs.
+          </li>
+          <li className={styles.functionJob}>
+            • Built custom WordPress sites and themes from scratch, and extended
+            existing sites with custom functionality using PHP.
+          </li>
+          <li className={styles.functionJob}>
+            • Designed and developed 2D and 3D games with C# in Unity.
+          </li>
+        </ul>
+      </div>
+    ),
+  };
+
   return (
     <>
       <Head>
@@ -26,35 +97,35 @@ export default function About() {
               <ul className={styles.ulStack}>
                 <li>
                   <img
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png'
+                    src={react_logo.src}
                     alt='Reactjs'
                     className={styles.techImage}
                   />
                 </li>
                 <li>
                   <img
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/1200px-Nextjs-logo.svg.png'
+                    src={next_logo.src}
                     alt='NextJs'
                     className={styles.techImage}
                   />
                 </li>
                 <li>
                   <img
-                    src='https://logospng.org/download/javascript/logo-javascript-1024.png'
+                    src={js_logo.src}
                     alt='Javascript'
                     className={styles.techImage}
                   />
                 </li>
                 <li>
                   <img
-                    src='https://logospng.org/download/typescript/typescript-2048.png'
+                    src={ts_logo.src}
                     alt='Typescript'
                     className={styles.techImage}
                   />
                 </li>
                 <li>
                   <img
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/800px-PHP-logo.svg.png'
+                    src={PHP_logo.src}
                     alt='PHP'
                     className={styles.techImage}
                   />
@@ -68,6 +139,20 @@ export default function About() {
               src='https://live.staticflickr.com/65535/49942355807_63b0af75c6_c.jpg'
               alt='author'
             />
+          </div>
+        </div>
+        <div className={styles.workContent}>
+          <h2>Where I&apos;ve Worked:</h2>
+          <div className={styles.previousJobs}>
+            <div className={styles.leftList}>
+              <ul>
+                <li onClick={() => setSelectedJob(0)}>Pipefy</li>
+                <li onClick={() => setSelectedJob(1)}>Freelance</li>
+              </ul>
+            </div>
+            <div className={styles.rightDescription}>
+              {jobContent[selectedJob]}
+            </div>
           </div>
         </div>
       </main>

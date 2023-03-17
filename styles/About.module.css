@@ -1,3 +1,4 @@
+
 .mainContent {
   display: flex;
   justify-content: space-between;
@@ -47,6 +48,60 @@
 
 .authorImage {
   height: 400px;
+}
+
+.workContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  width: 700px;
+  border: 1px solid rgba(179, 179, 179, 0.493);
+}
+
+.previousJobs {
+  display: flex;
+  width: 700px;
+  height: 350px;
+  border-top: 1px solid rgba(179, 179, 179, 0.493);
+}
+
+.leftList {
+  width: 200px;
+}
+
+.leftList ul li {
+  list-style: none;
+  padding: 20px;
+}
+
+.leftList ul li:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.rightDescription {
+  width: 500px;
+  overflow-y: hidden;
+  border-left: 1px solid rgba(179, 179, 179, 0.493);
+  overflow: hidden;
+  padding: 10px;
+}
+
+.ppfyJob, .freeJob {
+  width: 100%;
+  height: 350px;
+}
+
+
+.functionJob { 
+  padding-left: 20px;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.workDate {
+  font-size: 10px;
 }
 
 @keyframes wave-animation {
