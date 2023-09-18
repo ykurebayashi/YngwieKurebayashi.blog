@@ -1,14 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import { GraphQLClient, gql } from "graphql-request";
 import BlogCard from "@/components/BlogCard/BlogCard";
 import { GetStaticProps } from "next";
 import Navbar from "@/components/Navbar/Navbar";
 import { AllPosts, Post } from "@/utils/types/types";
 import { ALL_POSTS_QUERY } from "@/utils/queries/postsQuery";
 import { graphcms } from "@/utils/client/graphqlClient";
+import { pages } from "@/utils/pages";
 
 export const getStaticProps: GetStaticProps<AllPosts> = async () => {
   const { posts } = await graphcms.request<{ posts: Post[] }>(ALL_POSTS_QUERY);
@@ -31,7 +29,7 @@ export default function Home({ posts }: AllPosts) {
       </Head>
       <main className={styles.main}>
         <>
-          <Navbar />
+          <Navbar pages={pages} />
           <div className={styles.posts}>
             {posts.map((post, index) => {
               return (

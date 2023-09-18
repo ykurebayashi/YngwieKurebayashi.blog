@@ -1,18 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
-import styles from '../../styles/BlogCard.module.css';
-import { ReactElement } from 'react';
-
-type Props = {
-  title: string;
-  author: string;
-  authorPic: string;
-  coverPhoto: string;
-  datePublished: string;
-  slug: string;
-  category: string;
-  excerpt: string;
-};
+import Link from "next/link";
+import styles from "../../styles/BlogCard.module.css";
+import { ReactElement } from "react";
+import { BlogCardProps } from "./types";
 
 export default function BlogCard({
   title,
@@ -23,9 +13,9 @@ export default function BlogCard({
   slug,
   category,
   excerpt,
-}: Props): ReactElement {
+}: BlogCardProps): ReactElement {
   return (
-    <Link className={styles.cardLink} href={'/posts/' + slug}>
+    <Link className={styles.cardLink} href={"/posts/" + slug}>
       <div className={styles.card}>
         <div className={styles.mainTitle}>
           <img src={coverPhoto} alt={slug} className={styles.cover} />

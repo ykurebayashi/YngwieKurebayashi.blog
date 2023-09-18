@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import Navbar from "@/components/Navbar/Navbar";
-import { GraphQLClient, gql } from "graphql-request";
 import styles from "../../styles/Slug.module.css";
 import {
   GetStaticPropsArgs,
@@ -11,6 +10,7 @@ import {
 } from "@/utils/types/types";
 import { graphcms } from "@/utils/client/graphqlClient";
 import { SINGLE_POST_QUERY, SLUGLIST_QUERY } from "@/utils/queries/postsQuery";
+import { pages } from "@/utils/pages";
 
 export async function getStaticPaths() {
   const { posts } = await graphcms.request<SlugListResponse>(SLUGLIST_QUERY);
@@ -37,7 +37,7 @@ export async function getStaticProps({ params }: GetStaticPropsArgs) {
 export default function BlogPost({ post }: { post: SinglePost }) {
   return (
     <div className={styles.mainBody}>
-      <Navbar />
+      <Navbar pages={pages} />
       <main className={styles.blog}>
         <img
           className={styles.cover}
