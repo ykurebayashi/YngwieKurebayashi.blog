@@ -1,87 +1,19 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import Navbar from '@/components/Navbar/Navbar';
-import { GraphQLClient, gql } from 'graphql-request';
-import styles from '../../styles/Slug.module.css';
-
-interface Post {
-  title: string;
-  slug: string;
-  coverPhoto: {
-    url: string;
-  };
-  content: {
-    html: string;
-  };
-  datePublished: string;
-  excerpt: string;
-  category: string;
-  author: {
-    name: string;
-    avatar: {
-      id: string;
-      url: string;
-    };
-  };
-  id: string;
-}
-
-interface GetStaticPropsArgs {
-  params: {
-    slug: string;
-  };
-}
-
-interface GraphCMSResponse {
-  post: Post;
-}
-
-interface SlugListResponse {
-  posts: {
-    slug: string;
-  }[];
-}
-
-const graphcms = new GraphQLClient(
-  'https://api-sa-east-1.hygraph.com/v2/clf03xq6b1pn101ug1qpf36pj/master'
-);
-
-const QUERY = gql`
-  query Post($slug: String!) {
-    post(where: { slug: $slug }) {
-      title
-      slug
-      coverPhoto {
-        url
-      }
-      content {
-        html
-      }
-      datePublished
-      excerpt
-      category
-      author {
-        name
-        avatar {
-          id
-          url
-        }
-      }
-      id
-    }
-  }
-`;
-
-const SLUGLIST = gql`
-  {
-    posts {
-      slug
-    }
-  }
-`;
+import Navbar from "@/components/Navbar/Navbar";
+import { GraphQLClient, gql } from "graphql-request";
+import styles from "../../styles/Slug.module.css";
+import {
+  GetStaticPropsArgs,
+  GraphCMSResponse,
+  SinglePost,
+  SlugListResponse,
+} from "@/utils/types/types";
+import { graphcms } from "@/utils/client/graphqlClient";
+import { SINGLE_POST_QUERY, SLUGLIST_QUERY } from "@/utils/queries/postsQuery";
 
 export async function getStaticPaths() {
-  const { posts } = await graphcms.request<SlugListResponse>(SLUGLIST);
+  const { posts } = await graphcms.request<SlugListResponse>(SLUGLIST_QUERY);
   return {
     paths: posts.map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
@@ -90,7 +22,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsArgs) {
   const slug = params.slug;
-  const data = await graphcms.request<GraphCMSResponse>(QUERY, { slug });
+  const data = await graphcms.request<GraphCMSResponse>(SINGLE_POST_QUERY, {
+    slug,
+  });
   const post = data.post;
   return {
     props: {
@@ -100,7 +34,7 @@ export async function getStaticProps({ params }: GetStaticPropsArgs) {
   };
 }
 
-export default function BlogPost({ post }: { post: Post }) {
+export default function BlogPost({ post }: { post: SinglePost }) {
   return (
     <div className={styles.mainBody}>
       <Navbar />

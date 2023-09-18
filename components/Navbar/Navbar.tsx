@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import styles from '../../styles/Navbar.module.css';
+import Link from "next/link";
+import styles from "../../styles/Navbar.module.css";
 
 export default function Navbar() {
   return (
@@ -8,13 +8,7 @@ export default function Navbar() {
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li>
-            <Link href={'/'}>Blog</Link>
-          </li>
-          <li>
-            <Link href={'/about'}>About</Link>
-          </li>
-          <li>
-            <Link href={'/projects'}>Projects</Link>
+            <Link href={"/"}>Blog</Link>
           </li>
         </ul>
       </nav>
